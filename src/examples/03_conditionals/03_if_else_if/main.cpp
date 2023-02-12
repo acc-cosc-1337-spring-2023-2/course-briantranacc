@@ -1,6 +1,7 @@
 //write include statements
 #include "if_else.h"
 #include<iostream>
+#include "if_else_if.h"
 
 //write cin and cout using statements
 using std::cout;
@@ -12,7 +13,14 @@ Pass the year to get_generation function and display function result.
 */
 int main() 
 {
-	
+	auto year = 0;
+
+	cout<<"Enter a year: ";
+	cin>>year;
+
+	auto result = get_generation(year);
+
+	cout<<result<<"\n";
 	
 	return 0;
 }
