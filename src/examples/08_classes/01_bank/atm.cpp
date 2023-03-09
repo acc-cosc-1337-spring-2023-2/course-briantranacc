@@ -5,13 +5,13 @@ using std::cout; using std::cin;
 
 void display_menu()
 {
-    cout<<"\n\nACC COSC Bank\n\n";
+    cout<<"\n\nACC COSC BankAccount\n\n";
     cout<<"1-Deposit\n";
     cout<<"2-Withdraw\n";
     cout<<"3-Balance\n";
 }
 
-void run_menu(CheckingAccount &account)
+void run_menu(BankAccount &account)
 {
     auto option = 0;
 
@@ -25,7 +25,7 @@ void run_menu(CheckingAccount &account)
 
 }
 
-void handle_menu_option(int option, CheckingAccount &account)
+void handle_menu_option(int option, BankAccount &account)
 {
     auto amount = 0;
 
