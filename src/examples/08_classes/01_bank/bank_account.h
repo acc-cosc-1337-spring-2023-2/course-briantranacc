@@ -13,7 +13,7 @@ friend std::ostream& operator<<(std::ostream& out, const BankAccount &account);
 public:
     BankAccount(){get_balance_from_db();}
     BankAccount(int b) : balance(b){/*empty function code block*/}
-    int get_balance() const {return balance;}
+    virtual int get_balance() const {return balance;}
     void deposit(int amount);
     void withdraw(int amount);
 private:

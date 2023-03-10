@@ -8,11 +8,17 @@ using std::cout; using std::cin;
 
 int main()
 {
+	BankAccount *account;// assign the variable to point to later
 	srand(time(NULL));
 	SavingsAccount savings;
-	cout<<savings<<"\n";
+	show_balance(savings);
+	cout<<savings.get_balance()<<"\n";
 
-	CheckingAccount account;//cust 0
+	account = &savings;//point to the memory of savings
+	cout<<account->get_balance()<<"\n";//dereference the pointer
+
+	CheckingAccount checking;//cust 0
+	/*
 	auto choice = 'c';
 
 	cout<<"Checking or savings ";
@@ -37,5 +43,6 @@ int main()
 	
 	cout<<account.get_balance()<<"\n";
 
+	*/
 	return 0;
 }
