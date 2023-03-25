@@ -5,6 +5,10 @@
 #include "shape.h"
 #include "line.h"
 #include "circle.h"
+
+using std::vector;
+using std::unique_ptr; using std::make_unique;
+
 /*
 Create a Shape pointer of type Line
 Create vector of Shape pointers
@@ -13,16 +17,17 @@ iterate with auto
 
 int main() 
 {
-	Shape* shape;//creates or points to stack memory or the heap later
-	Circle circle;
-	
-	shape = &circle;
-	shape->draw();
-	
-	Line line;
+	vector<unique_ptr<Shape>> shapes;
+		shapes.push_back(make_unique<Circle>());
+		shapes.push_back(make_unique<Line>());
 
-	shape = &line;
-	shape->draw();
+		shapes[0]->draw();
+		shapes[1]->draw();
+
+		for(auto& shape: shapes)
+		{
+			shape->draw();
+		}
 
 	return 0;
 }
