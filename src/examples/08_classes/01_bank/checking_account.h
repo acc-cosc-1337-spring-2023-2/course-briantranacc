@@ -1,14 +1,16 @@
 //checking_account.h
+#include<iostream>
 #include "bank_account.h"
 
 #ifndef CHECKING_ACCOUNT_H
 #define CHECKING_ACCOUNT_H
 
-class CheckingAccount : public BankAccount
+class CheckingAccount: public BankAccount//inherit from BankAccount
 {
 public:
-    CheckingAccount(){BankAccount::get_balance();}
+    CheckingAccount(){};//default constructor
     CheckingAccount(int b) : BankAccount(b){}
+    int get_balance() const override {return BankAccount::get_balance();}
 };
 
 #endif
