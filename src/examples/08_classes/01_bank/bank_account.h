@@ -14,8 +14,10 @@ public:
     virtual int get_balance() const = 0;//pure virtual function
     void deposit(int amount);
     void withdraw(int amount);
-private:
+protected:
     int balance{0};//explicitly initialize to zero
+    
+private:
     void get_balance_from_db();
 };
 

@@ -1,9 +1,10 @@
 #include "bank_account.h"
-
+/* impolementation for class function/method is optional in an abstract class
 int BankAccount::get_balance() const
 {
     return balance;
 }
+*/
 //bank_account.cpp
 void BankAccount::get_balance_from_db()
 {   

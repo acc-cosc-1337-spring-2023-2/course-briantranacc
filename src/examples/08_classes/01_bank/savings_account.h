@@ -9,7 +9,7 @@ class SavingsAccount : public BankAccount
 public:
     SavingsAccount() {}
     SavingsAccount(int b) : BankAccount(b){/**empty code block*/}
-    int get_balance()const {return BankAccount::get_balance() * 1.05;}
+    int get_balance()const {return balance * 1.05;}
 };
 
 #endif

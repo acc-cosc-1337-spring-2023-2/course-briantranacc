@@ -10,7 +10,7 @@ class CheckingAccount: public BankAccount//inherit from BankAccount
 public:
     CheckingAccount(){};//default constructor
     CheckingAccount(int b) : BankAccount(b){}
-    int get_balance() const override {return BankAccount::get_balance();}
+    int get_balance() const override {return balance;}
 };
 
 #endif
