@@ -15,7 +15,7 @@ int main()
 		cin>>playerStart;
 
 		game.start_game(playerStart);
-		cout<<"To exit the game whenever, enter 100.\n\n";
+		cout<<"To exit the game whenever, enter 0.\n\n";
 
 		while (!game.game_over())
 		{
