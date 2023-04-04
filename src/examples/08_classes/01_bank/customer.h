@@ -12,6 +12,7 @@ class Customer
 {
 public:
     Customer();
+    Customer(int checking_balance, int savings_balance);
     std::unique_ptr<BankAccount>& get_account(int index){return accounts[index];}
 
 private:
