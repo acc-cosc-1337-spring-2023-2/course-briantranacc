@@ -45,22 +45,55 @@ void TicTacToe::mark_board(int position)
     set_next_player();
 }
 
-void TicTacToe::display_board() const
+
+ostream& operator<<(ostream& out, const TicTacToe& game)
 {
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
-            cout<<pegs[(i * 3) + j];
+            out<<game.pegs[(i * 3) + j];
             
             if (j < 2)
-                cout<<"|";
+                out<<"|";
         }
         if(i < 2)
-            cout<<"\n";
+            out<<"\n";
     }
-    cout<<"\n";
+    out<<"\n";
+    return out;
 }
+
+
+istream& operator>>(istream& in, TicTacToe& game)
+{
+    int position;
+
+    while (true)
+	{
+		cout<<"Enter position from 1 to 9: ";
+		in>>position;
+
+		if (position >=1 && position <=9)  
+		{
+			break;
+		}
+        else if(position == 0)
+        {
+            cout<<"Ending game...\n";
+            exit(0);
+        }
+        else
+        {
+            cout<<"Invalid number.";
+        }
+        
+	}
+
+    game.mark_board(position);
+    return in;
+}
+
 
 void TicTacToe::set_next_player()
 {
@@ -69,6 +102,7 @@ void TicTacToe::set_next_player()
     else
         player = "X";
 }
+
 
 bool TicTacToe::check_board_full()
 {
@@ -80,6 +114,7 @@ bool TicTacToe::check_board_full()
     return true;
 }
 
+
 void TicTacToe::clear_board()
 {
     for (int i = 0; i < 9; i++)
@@ -89,7 +124,6 @@ void TicTacToe::clear_board()
     }
 }
 
-//bool TicTacToe::game_over()
 
 bool TicTacToe::check_column_win()
 {
@@ -106,6 +140,7 @@ bool TicTacToe::check_column_win()
     }
     return false;
 }
+
 
 bool TicTacToe::check_row_win()
 {   
@@ -147,6 +182,7 @@ bool TicTacToe::check_diagonal_win()
     else
         return false;
 }
+
 
 void TicTacToe::set_winner()
 {

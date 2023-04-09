@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -71,6 +72,7 @@ TEST_CASE("Test win by first column")
 	test.mark_board(7);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win by second column")
@@ -86,6 +88,7 @@ TEST_CASE("Test win by second column")
 	test.mark_board(8);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win by third column")
@@ -101,6 +104,7 @@ TEST_CASE("Test win by third column")
 	test.mark_board(9);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win by first row")
@@ -116,6 +120,7 @@ TEST_CASE("Test win by first row")
 	test.mark_board(3);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win by second row")
@@ -131,6 +136,7 @@ TEST_CASE("Test win by second row")
 	test.mark_board(6);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win by third row")
@@ -146,6 +152,7 @@ TEST_CASE("Test win by third row")
 	test.mark_board(9);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win diagonally from top left")
@@ -161,6 +168,7 @@ TEST_CASE("Test win diagonally from top left")
 	test.mark_board(9);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
 }
 
 TEST_CASE("Test win diagonally from bottom left")
@@ -176,4 +184,53 @@ TEST_CASE("Test win diagonally from bottom left")
 	test.mark_board(3);
 
 	REQUIRE(test.game_over() == true);
+	REQUIRE(test.get_winner() == "X");
+}
+
+TEST_CASE("Test TicTacToe manager")
+{
+	TicTacToe test;
+	TicTacToeManager manager;
+
+	int x_wins, o_wins, ties;
+
+	//Player X
+	test.start_game("X");
+	test.mark_board(7);
+	test.mark_board(6);
+	test.mark_board(5);
+	test.mark_board(4);
+	test.mark_board(3);
+	test.game_over();
+	manager.save_game(test);
+
+	//Player O
+	test.start_game("O");
+	test.mark_board(7);
+	test.mark_board(6);
+	test.mark_board(5);
+	test.mark_board(4);
+	test.mark_board(3);
+	test.game_over();
+	manager.save_game(test);
+
+	//Tie
+	test.start_game("X");
+	test.mark_board(1);
+	test.mark_board(2);
+	test.mark_board(3);
+	test.mark_board(4);
+	test.mark_board(5);
+	test.mark_board(7);
+	test.mark_board(6);
+	test.mark_board(9);
+	test.mark_board(8);
+	test.game_over();
+	manager.save_game(test);
+
+	//Counts winner totals
+	manager.get_winner_total(x_wins, o_wins, ties);
+	REQUIRE(x_wins == 1);
+	REQUIRE(o_wins == 1);
+	REQUIRE(ties == 1);
 }
