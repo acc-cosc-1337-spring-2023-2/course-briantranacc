@@ -1,32 +1,53 @@
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+#include<memory>
 
 using std::cout; using std::cin; 
+using std::make_unique;
 
 int main() 
 {
-	TicTacToe game;
+	unique_ptr<TicTacToe> game;
 	TicTacToeManager manager;
 	string playerStart;
 	auto anotherGame = 'y';
-	int x, o, t;
+	int x, o, t, size;
 
 	do
 	{
+		do
+		{
+			cout<<"Choose Board Size. 3 for 3x3, 4 for 4x4: ";
+        	cin>>size;
+		} 
+		while (size != 3 && size != 4);
+		
+
+        if(size == 3)
+            game = make_unique<TicTacToe3>();
+        else if(size == 4)
+            game = make_unique<TicTacToe4>();
+
+
+		
 		cout<<"Enter X or O to start: ";
 		cin>>playerStart;
-		cout<<"To exit the game whenever, enter 0.\n\n";
+		cout<<"To exit game, enter 0.\n\n";
+		
 
-		game.start_game(playerStart);
 
-		while(!game.game_over())
+		game->start_game(playerStart);
+
+		while(!game->game_over())
 		{
-			cin>>game;
-			cout<<game;
+			cin>>*game;
+			cout<<*game;
 		}
 		
 
-		cout<<"\nGame over. Winner: "<<game.get_winner()<<"\n";
+		cout<<"\nGame over. Winner: "<<game->get_winner()<<"\n";
 		manager.save_game(game);
 		manager.get_winner_total(x, o, t);
 
