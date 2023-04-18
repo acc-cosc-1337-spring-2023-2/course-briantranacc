@@ -18,5 +18,7 @@ Vector::~Vector()
 //Free function
 void use_vector()
 {
-    Vector v(3);
+    //do not create dynamic memory for v; use a stack variable Vector v(3);
+    Vector* v = new Vector(3);
+    delete v;
 }
