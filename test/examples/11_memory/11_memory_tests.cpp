@@ -7,6 +7,7 @@ TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
 
+/*
 TEST_CASE("Test ref ptr params") 
 {
 	int num1 = 1;
@@ -39,4 +40,12 @@ TEST_CASE("Test create Vector v1 from existing v")
 	REQUIRE(v1.Size() == v.Size());
 	REQUIRE(v1.Capacity() == v.Capacity());
 
+}
+*/
+
+TEST_CASE("Test my vector create 2 vectors v v1 overwrite v1 with v") 
+{
+	Vector v(3);
+	Vector v1(3);
+	v1 = v;//C++ doesn't know how to handle and equal sign with our class variables
 }
