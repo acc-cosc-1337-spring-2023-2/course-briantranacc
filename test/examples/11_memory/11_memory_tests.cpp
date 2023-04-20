@@ -30,3 +30,13 @@ TEST_CASE("Test my vector capacity")
 
 	REQUIRE(v.Capacity() == 3);
 }
+
+TEST_CASE("Test create Vector v1 from existing v") 
+{//looking at how class copy works
+	Vector v(3);
+	Vector v1 = v;
+
+	REQUIRE(v1.Size() == v.Size());
+	REQUIRE(v1.Capacity() == v.Capacity());
+
+}
