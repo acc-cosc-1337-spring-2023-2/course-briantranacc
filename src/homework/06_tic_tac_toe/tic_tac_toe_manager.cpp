@@ -1,6 +1,18 @@
 //cpp
 #include "tic_tac_toe_manager.h"
 
+using std::cout;
+
+TicTacToeManager::TicTacToeManager(TicTacToeData& data) : data(data)
+{
+    games = data.get_games();
+
+    for(auto& game : games)
+    {
+        update_winner_count(game->get_winner());
+    }
+}
+
 ostream& operator<<(ostream& out, const TicTacToeManager& manager)
 {
     for (const auto& game : manager.games)
@@ -31,4 +43,10 @@ void TicTacToeManager::update_winner_count(string winner)
         o_win++;
     else  
         ties++;
+}
+
+TicTacToeManager::~TicTacToeManager()
+{
+    cout<<"\nSaved games.\n";
+    data.save_games(games);
 }
