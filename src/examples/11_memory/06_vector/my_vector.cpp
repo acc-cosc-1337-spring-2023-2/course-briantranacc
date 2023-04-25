@@ -30,11 +30,14 @@ Vector::Vector(const Vector& v)
 Vector& Vector::operator=(const Vector& v)
 {
     int* temp = new int[v.size];
+
     for(auto i=0; i < v.size; i++){
         temp[i] = v.elements[i];
     }
+
     cout<<"copy assignment delete memory at "<<elements<<"\n";
     delete[] elements;
+
     elements = temp;
     cout<<"copy assignment new memory created "<<elements<<"\n";
     temp = nullptr;
@@ -57,6 +60,30 @@ Vector::Vector(Vector&& v)
     v.size = 0;
 }
 
+/*
+1-Clear/delete original memory from v
+2-Point v1 elements to v.elements
+3-get size from v
+4-Point v.elements to nullptr
+5-Set v.size to 0
+6-Return a self reference
+*/
+
+Vector& Vector::operator=(Vector&& v)
+{
+    cout<<"Move assignment delete memory "<<elements;
+    delete[] elements;
+
+    elements = v.elements;
+    cout<<"Move assignment switch pointers "<<elements<<"\n";
+
+    size = v.size;
+    v.elements = nullptr;
+    v.size = 0;
+
+    return *this;
+}
+
 Vector::~Vector()
 {
     cout<<"delete the memory at"<<elements<<"\n";
@@ -73,4 +100,10 @@ void use_vector()
     cout<<v[0]<<"\n";//read
     //cout<<"unloaded fomm the stack\n";
     ////more code here
+}
+
+Vector get_vector()
+{
+    Vector v(3);
+    return v;
 }

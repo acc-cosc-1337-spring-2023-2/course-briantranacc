@@ -41,20 +41,25 @@ TEST_CASE("Test create Vector v1 from existing v")
 	REQUIRE(v1.Capacity() == v.Capacity());
 
 }
-*/
 
-/*
 TEST_CASE("Test my vector create 2 vectors v v1 overwrite v1 with v") 
 {
 	Vector v(3);
 	Vector v1(3);
 	v1 = v;//C++ doesn't know how to handle and equal sign with our class variables
 }
-*/
+
 
 TEST_CASE("Test moving v into v1") 
 {
 	Vector v(3);//empty after 54 executes
 	Vector v1 = std::move(v);
 
+}
+*/
+
+TEST_CASE("Overwrite existing vector with a value return vector function") 
+{
+	Vector v(3);
+	v = get_vector();
 }
